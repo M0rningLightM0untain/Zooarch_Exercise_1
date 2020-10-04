@@ -23,7 +23,16 @@ library(reshape2)#install.packages("reshape2")
 ```
 
 ```{r dataloda}
+horse_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "B2:D25")
 
+auroch_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "E2:G25")
+
+red_deer_MNI_mesy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "H2:J25")
+
+rabbit_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "K2:M25")
+```
+
+```{r}
 
 ```
 
