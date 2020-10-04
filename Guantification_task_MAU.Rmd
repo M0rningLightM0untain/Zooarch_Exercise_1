@@ -23,16 +23,87 @@ library(reshape2)#install.packages("reshape2")
 ```
 
 ```{r dataloda}
-horse_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "B2:D25")
+horse_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "B2:D25")
 
-auroch_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "E2:G25")
+auroch_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "E2:G25")
 
-red_deer_MNI_mesy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "H2:J25")
+red_deer_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "H2:J25")
 
-rabbit_MNI_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "K2:M25")
+rabbit_messy <- read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "K2:M25")
 ```
 
-```{r}
+```{r data-fixing}
+nisp_h = sum(horse_messy$Total, na.rm = TRUE)
+
+horse_MNE <- horse_messy %>%
+  add_column(read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "A2:A25"), .before = "L") %>%
+  rename(element = ...1) %>%
+  janitor::clean_names() %>%
+  add_row(element = "Total NISP", l = NA, r = NA, total = nisp_h) %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "element")
+
+nisp_a = sum(auroch_messy$Total, na.rm = TRUE)
+
+auroch_MNE <- auroch_messy %>%
+  add_column(read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "A2:A25"), .before = "L") %>%
+  rename(element = ...1) %>%
+  janitor::clean_names() %>%
+  add_row(element = "Total NISP", l = NA, r = NA, total = nisp_a) %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "element")
+
+nisp_rd = sum(red_deer_MNI_messy$Total, na.rm = TRUE)
+
+red_deer_MNE <- red_deer_messy %>%
+  add_column(read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "A2:A25"), .before = "L") %>%
+  rename(element = ...1) %>%
+  janitor::clean_names() %>%
+  add_row(element = "Total NISP", l = NA, r = NA, total = nisp_rd) %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "element")
+
+nisp_r = sum(rabbit_messy$Total, na.rm = TRUE)
+
+rabbit_MNE <- rabbit_messy %>%
+  add_column(read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "A2:A25"), .before = "L") %>%
+  rename(element = ...1) %>%
+  janitor::clean_names() %>%
+  add_row(element = "Total_NISP", l = NA, r = NA, total = nisp_r) %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "element")
+```
+
+```{r add MAU column}
+
+#element MNI calculations
+
+mandibleMNI = horse_MNE$total["Mandible"] / 2
+#maxillaMNI = 
+#atlasMNI =
+#axisMNI = 
+#scapulaMNI = 
+#p_humerusMNI = 
+#d_humerusMNI = 
+#p_radiusMNI = 
+#d_radiusMNI =   
+#p_metacarpalMNI = 
+#d_metacarpalMNI = 
+#pelvisMNI =
+#p_femurMNI = 
+#d_femurMNI = 
+#p_tibiaMNI = 
+#d_tibiaMNI = 
+#astragalusMNI = 
+#calcaneumMNI = 
+#p_metatarsalMNI = 
+#d_metatarsalMNI = 
+#phalange1MNI = 
+#phalange2MNI = 
+#phalange3MNI =
+
+#horse_MAU <- horse_MNE %>%
+  #add_column(.after = "total", )
 
 ```
 
