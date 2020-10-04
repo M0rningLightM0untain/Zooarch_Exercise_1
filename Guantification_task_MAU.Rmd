@@ -1,0 +1,29 @@
+---
+title: "Quantification Exercise"
+author: "Jack Sudds"
+date: "04/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load libaries, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) #install.packages("skimr")
+library(kableExtra) #install.packages("kableExtra")
+library(formattable)#install.packages("formattable")
+library(dplyr)
+library(janitor)
+library(ggplot2)
+library(reshape2)#install.packages("reshape2")
+```
+
+```{r dataloda}
+
+
+```
+
