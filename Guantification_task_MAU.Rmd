@@ -53,7 +53,7 @@ auroch_MNE <- auroch_messy %>%
   remove_rownames() %>%
   column_to_rownames(var = "element")
 
-nisp_rd = sum(red_deer_MNI_messy$Total, na.rm = TRUE)
+nisp_rd = sum(red_deer_messy$Total, na.rm = TRUE)
 
 red_deer_MNE <- red_deer_messy %>%
   add_column(read_xlsx(here("data", "data_as_given.xlsx"), sheet = "Data", range = "A2:A25"), .before = "L") %>%
@@ -231,33 +231,198 @@ rabbit_MAU <- rabbit_MAU%>%
 
 ```
 
-```{r MNI calculations W.I.P, horse}
+```{r MNI calculations horse}
 
-mandibleMNI <- as.numeric(max(horse_MNE[1,1], horse_MNE[1,2]))
-maxillaMNI <- as.numeric(max(horse_MNE[2,1], horse_MNE[2,2]))
-atlasMNI <- as.numeric(max(horse_MNE[3,1], horse_MNE[3,2]))
-axisMNI <- as.numeric(max(horse_MNE[4,1], horse_MNE[4,2]))
-scapulaMNI <- as.numeric(max(horse_MNE[5,1], horse_MNE[5,2]))
-p_humerusMNI <- as.numeric(max(horse_MNE[6,1], horse_MNE[6,2]))
-d_humerusMNI <- as.numeric(max(horse_MNE[7,1], horse_MNE[7,2]))
-p_radiusMNI <- as.numeric(max(horse_MNE[8,1], horse_MNE[8,2]))
-d_radiusMNI <- as.numeric(max(horse_MNE[9,1], horse_MNE[9,2]))
-p_metacarpalMNI <- as.numeric(max(horse_MNE[10,1], horse_MNE[10,2]))
-d_metacarpalMNI <- as.numeric(max(horse_MNE[11,1], horse_MNE[11,2]))
-pelvisMNI <- as.numeric(max(horse_MNE[12,1], horse_MNE[12,2]))
-p_femurMNI <- as.numeric(max(horse_MNE[13,1], horse_MNE[13,2]))
-d_femurMNI <- as.numeric(max(horse_MNE[14,1], horse_MNE[14,2]))
-p_tibiaMNI <- as.numeric(max(horse_MNE[15,1], horse_MNE[15,2]))
-d_tibiaMNI <- as.numeric(max(horse_MNE[16,1], horse_MNE[16,2]))
-astragalusMNI <- as.numeric(max(horse_MNE[17,1], horse_MNE[17,2]))
-calcaneumMNI <- as.numeric(max(horse_MNE[18,1], horse_MNE[18,2]))
-p_metatarsalMNI <- as.numeric(max(horse_MNE[19,1], horse_MNE[19,2]))
-d_metatarsalMNI <- as.numeric(max(horse_MNE[20,1], horse_MNE[20,2]))
-phalange1MNI <- as.numeric(max(horse_MNE[21,1], horse_MNE[21,2]))/4
-phalange2MNI <- as.numeric(max(horse_MNE[22,1], horse_MNE[22,2]))/4
-phalange3MNI <- as.numeric(max(horse_MNE[23,1], horse_MNE[23,2]))/4
+mandibleMNI <- as.numeric(max(horse_MNE[1,1], horse_MNE[1,2], na.rm = TRUE))
+maxillaMNI <- as.numeric(max(horse_MNE[2,1], horse_MNE[2,2], na.rm = TRUE))
+atlasMNI <- as.numeric(max(horse_MNE[3,1], horse_MNE[3,2], na.rm = TRUE))
+axisMNI <- as.numeric(max(horse_MNE[4,1], horse_MNE[4,2], na.rm = TRUE))
+scapulaMNI <- as.numeric(max(horse_MNE[5,1], horse_MNE[5,2], na.rm = TRUE))
+p_humerusMNI <- as.numeric(max(horse_MNE[6,1], horse_MNE[6,2], na.rm = TRUE))
+d_humerusMNI <- as.numeric(max(horse_MNE[7,1], horse_MNE[7,2], na.rm = TRUE))
+p_radiusMNI <- as.numeric(max(horse_MNE[8,1], horse_MNE[8,2], na.rm = TRUE))
+d_radiusMNI <- as.numeric(max(horse_MNE[9,1], horse_MNE[9,2], na.rm = TRUE))
+p_metacarpalMNI <- as.numeric(max(horse_MNE[10,1], horse_MNE[10,2], na.rm = TRUE))
+d_metacarpalMNI <- as.numeric(max(horse_MNE[11,1], horse_MNE[11,2], na.rm = TRUE))
+pelvisMNI <- as.numeric(max(horse_MNE[12,1], horse_MNE[12,2], na.rm = TRUE))
+p_femurMNI <- as.numeric(max(horse_MNE[13,1], horse_MNE[13,2], na.rm = TRUE))
+d_femurMNI <- as.numeric(max(horse_MNE[14,1], horse_MNE[14,2], na.rm = TRUE))
+p_tibiaMNI <- as.numeric(max(horse_MNE[15,1], horse_MNE[15,2], na.rm = TRUE))
+d_tibiaMNI <- as.numeric(max(horse_MNE[16,1], horse_MNE[16,2], na.rm = TRUE))
+astragalusMNI <- as.numeric(max(horse_MNE[17,1], horse_MNE[17,2], na.rm = TRUE))
+calcaneumMNI <- as.numeric(max(horse_MNE[18,1], horse_MNE[18,2], na.rm = TRUE))
+p_metatarsalMNI <- as.numeric(max(horse_MNE[19,1], horse_MNE[19,2], na.rm = TRUE))
+d_metatarsalMNI <- as.numeric(max(horse_MNE[20,1], horse_MNE[20,2], na.rm = TRUE))
+phalange1MNI <- as.numeric(max(horse_MNE[21,1], horse_MNE[21,2], na.rm = TRUE))/4
+phalange2MNI <- as.numeric(max(horse_MNE[22,1], horse_MNE[22,2], na.rm = TRUE))/4
+phalange3MNI <- as.numeric(max(horse_MNE[23,1], horse_MNE[23,2], na.rm = TRUE))/4
 
 MNI_column_h <- c(mandibleMNI, maxillaMNI, atlasMNI, axisMNI, scapulaMNI, p_humerusMNI, d_humerusMNI, p_radiusMNI, d_radiusMNI, p_metacarpalMNI, d_metacarpalMNI, pelvisMNI, p_femurMNI, d_femurMNI, p_tibiaMNI, d_tibiaMNI, astragalusMNI, calcaneumMNI, p_metatarsalMNI, d_metatarsalMNI, phalange1MNI, phalange2MNI, phalange3MNI, NA, NA)
+                  
+MNI_column_h <- MNI_column_h %>%
+  na_if(-Inf)
 
 horse_MNI <- horse_MAU %>%
   add_column(.after = "MAU", MNI = MNI_column_h)
+
+horse_MNI <- horse_MNI %>%
+  add_row(.after = "Total MAU", l = NA, r = NA, total = NA, MAU = NA, MNI = max(horse_MNI$MNI, na.rm = TRUE))
+  row.names(horse_MNI)[26] <- "Total MNI"
+  
+formattable(horse_MNI)
+```
+
+```{r MNI conversion for auroch}
+
+mandibleMNI <- as.numeric(max(auroch_MNE[1,1], auroch_MNE[1,2], na.rm = TRUE))
+maxillaMNI <- as.numeric(max(auroch_MNE[2,1], auroch_MNE[2,2], na.rm = TRUE))
+atlasMNI <- as.numeric(max(auroch_MNE[3,1], auroch_MNE[3,2], na.rm = TRUE))
+axisMNI <- as.numeric(max(auroch_MNE[4,1], auroch_MNE[4,2], na.rm = TRUE))
+scapulaMNI <- as.numeric(max(auroch_MNE[5,1], auroch_MNE[5,2], na.rm = TRUE))
+p_humerusMNI <- as.numeric(max(auroch_MNE[6,1], auroch_MNE[6,2], na.rm = TRUE))
+d_humerusMNI <- as.numeric(max(auroch_MNE[7,1], auroch_MNE[7,2], na.rm = TRUE))
+p_radiusMNI <- as.numeric(max(auroch_MNE[8,1], auroch_MNE[8,2], na.rm = TRUE))
+d_radiusMNI <- as.numeric(max(auroch_MNE[9,1], auroch_MNE[9,2], na.rm = TRUE))
+p_metacarpalMNI <- as.numeric(max(auroch_MNE[10,1], auroch_MNE[10,2], na.rm = TRUE))
+d_metacarpalMNI <- as.numeric(max(auroch_MNE[11,1], auroch_MNE[11,2], na.rm = TRUE))
+pelvisMNI <- as.numeric(max(auroch_MNE[12,1], auroch_MNE[12,2], na.rm = TRUE))
+p_femurMNI <- as.numeric(max(auroch_MNE[13,1], auroch_MNE[13,2], na.rm = TRUE))
+d_femurMNI <- as.numeric(max(auroch_MNE[14,1], auroch_MNE[14,2], na.rm = TRUE))
+p_tibiaMNI <- as.numeric(max(auroch_MNE[15,1], auroch_MNE[15,2], na.rm = TRUE))
+d_tibiaMNI <- as.numeric(max(auroch_MNE[16,1], auroch_MNE[16,2], na.rm = TRUE))
+astragalusMNI <- as.numeric(max(auroch_MNE[17,1], auroch_MNE[17,2], na.rm = TRUE))
+calcaneumMNI <- as.numeric(max(auroch_MNE[18,1], auroch_MNE[18,2], na.rm = TRUE))
+p_metatarsalMNI <- as.numeric(max(auroch_MNE[19,1], auroch_MNE[19,2], na.rm = TRUE))
+d_metatarsalMNI <- as.numeric(max(auroch_MNE[20,1], auroch_MNE[20,2], na.rm = TRUE))
+phalange1MNI <- as.numeric(max(auroch_MNE[21,1], auroch_MNE[21,2], na.rm = TRUE))/8
+phalange2MNI <- as.numeric(max(auroch_MNE[22,1], auroch_MNE[22,2], na.rm = TRUE))/8
+phalange3MNI <- as.numeric(max(auroch_MNE[23,1], auroch_MNE[23,2], na.rm = TRUE))/8
+
+MNI_column_a <- c(mandibleMNI, maxillaMNI, atlasMNI, axisMNI, scapulaMNI, p_humerusMNI, d_humerusMNI, p_radiusMNI, d_radiusMNI, p_metacarpalMNI, d_metacarpalMNI, pelvisMNI, p_femurMNI, d_femurMNI, p_tibiaMNI, d_tibiaMNI, astragalusMNI, calcaneumMNI, p_metatarsalMNI, d_metatarsalMNI, phalange1MNI, phalange2MNI, phalange3MNI, NA, NA)
+                  
+MNI_column_a <- MNI_column_a %>%
+  na_if(-Inf)
+
+auroch_MNI <- auroch_MAU %>%
+  add_column(.after = "MAU", MNI = MNI_column_a)
+
+auroch_MNI <- auroch_MNI %>%
+  add_row(.after = "Total MAU", l = NA, r = NA, total = NA, MAU = NA, MNI = max(auroch_MNI$MNI, na.rm = TRUE))
+  row.names(auroch_MNI)[26] <- "Total MNI"
+
+```
+
+```{r MNI conversion for red deer}
+
+mandibleMNI <- as.numeric(max(red_deer_MNE[1,1], red_deer_MNE[1,2], na.rm = TRUE))
+maxillaMNI <- as.numeric(max(red_deer_MNE[2,1], red_deer_MNE[2,2], na.rm = TRUE))
+atlasMNI <- as.numeric(max(red_deer_MNE[3,1], red_deer_MNE[3,2], na.rm = TRUE))
+axisMNI <- as.numeric(max(red_deer_MNE[4,1], red_deer_MNE[4,2], na.rm = TRUE))
+scapulaMNI <- as.numeric(max(red_deer_MNE[5,1], red_deer_MNE[5,2], na.rm = TRUE))
+p_humerusMNI <- as.numeric(max(red_deer_MNE[6,1], red_deer_MNE[6,2], na.rm = TRUE))
+d_humerusMNI <- as.numeric(max(red_deer_MNE[7,1], red_deer_MNE[7,2], na.rm = TRUE))
+p_radiusMNI <- as.numeric(max(red_deer_MNE[8,1], red_deer_MNE[8,2], na.rm = TRUE))
+d_radiusMNI <- as.numeric(max(red_deer_MNE[9,1], red_deer_MNE[9,2], na.rm = TRUE))
+p_metacarpalMNI <- as.numeric(max(red_deer_MNE[10,1], red_deer_MNE[10,2], na.rm = TRUE))
+d_metacarpalMNI <- as.numeric(max(red_deer_MNE[11,1], red_deer_MNE[11,2], na.rm = TRUE))
+pelvisMNI <- as.numeric(max(red_deer_MNE[12,1], red_deer_MNE[12,2], na.rm = TRUE))
+p_femurMNI <- as.numeric(max(red_deer_MNE[13,1], red_deer_MNE[13,2], na.rm = TRUE))
+d_femurMNI <- as.numeric(max(red_deer_MNE[14,1], red_deer_MNE[14,2], na.rm = TRUE))
+p_tibiaMNI <- as.numeric(max(red_deer_MNE[15,1], red_deer_MNE[15,2], na.rm = TRUE))
+d_tibiaMNI <- as.numeric(max(red_deer_MNE[16,1], red_deer_MNE[16,2], na.rm = TRUE))
+astragalusMNI <- as.numeric(max(red_deer_MNE[17,1], red_deer_MNE[17,2], na.rm = TRUE))
+calcaneumMNI <- as.numeric(max(red_deer_MNE[18,1], red_deer_MNE[18,2], na.rm = TRUE))
+p_metatarsalMNI <- as.numeric(max(red_deer_MNE[19,1], red_deer_MNE[19,2], na.rm = TRUE))
+d_metatarsalMNI <- as.numeric(max(red_deer_MNE[20,1], red_deer_MNE[20,2], na.rm = TRUE))
+phalange1MNI <- as.numeric(max(red_deer_MNE[21,1], red_deer_MNE[21,2], na.rm = TRUE))/8
+phalange2MNI <- as.numeric(max(red_deer_MNE[22,1], red_deer_MNE[22,2], na.rm = TRUE))/8
+phalange3MNI <- as.numeric(max(red_deer_MNE[23,1], red_deer_MNE[23,2], na.rm = TRUE))/8
+
+MNI_column_rd <- c(mandibleMNI, maxillaMNI, atlasMNI, axisMNI, scapulaMNI, p_humerusMNI, d_humerusMNI, p_radiusMNI, d_radiusMNI, p_metacarpalMNI, d_metacarpalMNI, pelvisMNI, p_femurMNI, d_femurMNI, p_tibiaMNI, d_tibiaMNI, astragalusMNI, calcaneumMNI, p_metatarsalMNI, d_metatarsalMNI, phalange1MNI, phalange2MNI, phalange3MNI, NA, NA)
+                  
+MNI_column_rd <- MNI_column_rd %>%
+  na_if(-Inf)
+
+red_deer_MNI <- red_deer_MAU %>%
+  add_column(.after = "MAU", MNI = MNI_column_rd)
+
+red_deer_MNI <- red_deer_MNI %>%
+  add_row(.after = "Total MAU", l = NA, r = NA, total = NA, MAU = NA, MNI = max(red_deer_MNI$MNI, na.rm = TRUE))
+  row.names(red_deer_MNI)[26] <- "Total MNI"
+```
+
+```{r MNI conversions for rabbit}
+
+mandibleMNI <- as.numeric(max(rabbit_MNE[1,1], rabbit_MNE[1,2], na.rm = TRUE))
+maxillaMNI <- as.numeric(max(rabbit_MNE[2,1], rabbit_MNE[2,2], na.rm = TRUE))
+atlasMNI <- as.numeric(max(rabbit_MNE[3,1], rabbit_MNE[3,2], na.rm = TRUE))
+axisMNI <- as.numeric(max(rabbit_MNE[4,1], rabbit_MNE[4,2], na.rm = TRUE))
+scapulaMNI <- as.numeric(max(rabbit_MNE[5,1], rabbit_MNE[5,2], na.rm = TRUE))
+p_humerusMNI <- as.numeric(max(rabbit_MNE[6,1], rabbit_MNE[6,2], na.rm = TRUE))
+d_humerusMNI <- as.numeric(max(rabbit_MNE[7,1], rabbit_MNE[7,2], na.rm = TRUE))
+p_radiusMNI <- as.numeric(max(rabbit_MNE[8,1], rabbit_MNE[8,2], na.rm = TRUE))
+d_radiusMNI <- as.numeric(max(rabbit_MNE[9,1], rabbit_MNE[9,2], na.rm = TRUE))
+p_metacarpalMNI <- as.numeric(max(rabbit_MNE[10,1], rabbit_MNE[10,2], na.rm = TRUE))/4
+d_metacarpalMNI <- as.numeric(max(rabbit_MNE[11,1], rabbit_MNE[11,2], na.rm = TRUE))/4
+pelvisMNI <- as.numeric(max(rabbit_MNE[12,1], rabbit_MNE[12,2], na.rm = TRUE))
+p_femurMNI <- as.numeric(max(rabbit_MNE[13,1], rabbit_MNE[13,2], na.rm = TRUE))
+d_femurMNI <- as.numeric(max(rabbit_MNE[14,1], rabbit_MNE[14,2], na.rm = TRUE))
+p_tibiaMNI <- as.numeric(max(rabbit_MNE[15,1], rabbit_MNE[15,2], na.rm = TRUE))
+d_tibiaMNI <- as.numeric(max(rabbit_MNE[16,1], rabbit_MNE[16,2], na.rm = TRUE))
+astragalusMNI <- as.numeric(max(rabbit_MNE[17,1], rabbit_MNE[17,2], na.rm = TRUE))
+calcaneumMNI <- as.numeric(max(rabbit_MNE[18,1], rabbit_MNE[18,2], na.rm = TRUE))
+p_metatarsalMNI <- as.numeric(max(rabbit_MNE[19,1], rabbit_MNE[19,2], na.rm = TRUE))/4
+d_metatarsalMNI <- as.numeric(max(rabbit_MNE[20,1], rabbit_MNE[20,2], na.rm = TRUE))/4
+phalange1MNI <- as.numeric(max(rabbit_MNE[21,1], rabbit_MNE[21,2], na.rm = TRUE))/16
+phalange2MNI <- as.numeric(max(rabbit_MNE[22,1], rabbit_MNE[22,2], na.rm = TRUE))/16
+phalange3MNI <- as.numeric(max(rabbit_MNE[23,1], rabbit_MNE[23,2], na.rm = TRUE))/16
+
+MNI_column_r <- c(mandibleMNI, maxillaMNI, atlasMNI, axisMNI, scapulaMNI, p_humerusMNI, d_humerusMNI, p_radiusMNI, d_radiusMNI, p_metacarpalMNI, d_metacarpalMNI, pelvisMNI, p_femurMNI, d_femurMNI, p_tibiaMNI, d_tibiaMNI, astragalusMNI, calcaneumMNI, p_metatarsalMNI, d_metatarsalMNI, phalange1MNI, phalange2MNI, phalange3MNI, NA, NA)
+                  
+MNI_column_r <- MNI_column_r %>%
+  na_if(-Inf)
+
+rabbit_MNI <- rabbit_MAU %>%
+  add_column(.after = "MAU", MNI = MNI_column_r)
+
+rabbit_MNI <- rabbit_MNI %>%
+  add_row(.after = "Total MAU", l = NA, r = NA, total = NA, MAU = NA, MNI = max(rabbit_MNI$MNI, na.rm = TRUE))
+  row.names(rabbit_MNI)[26] <- "Total MNI"
+```
+
+```{r NISP proprtions}
+
+options(digits = 2)
+
+NISP_proportion <- data.frame("Taxon" = character(),
+                              "NISP" = integer(),
+                              "NISP Proportion" = integer(),
+                              stringsAsFactors = FALSE)
+#set taxa
+
+NISP_proportion <- NISP_proportion %>%
+  add_row(Taxon = "Horse") %>%
+  add_row(Taxon = "Aurochs") %>%
+  add_row(Taxon = "Red Deer") %>%
+  add_row(Taxon = "Rabbit") %>%
+  add_row(Taxon = "Total NISP")
+
+#import base NISP
+
+NISP_proportion[1,2] = as.numeric(horse_MNE[24,3])
+NISP_proportion[2,2] = as.numeric(auroch_MNE[24,3])
+NISP_proportion[3,2] = as.numeric(red_deer_MNE[24,3])
+NISP_proportion[4,2] = as.numeric(rabbit_MNE[24,3])
+NISP_proportion[5,2] = as.numeric(sum(NISP_proportion$NISP, na.rm = TRUE))
+
+#calculate NISP proportions
+
+NISP_proportion[1,3] = as.numeric((NISP_proportion[1,2]/NISP_proportion[5,2])*100)
+NISP_proportion[2,3] = as.numeric((NISP_proportion[2,2]/NISP_proportion[5,2])*100)
+NISP_proportion[3,3] = as.numeric((NISP_proportion[3,2]/NISP_proportion[5,2])*100)
+NISP_proportion[4,3] = as.numeric((NISP_proportion[4,2]/NISP_proportion[5,2])*100)
+NISP_proportion[5,3] = as.numeric(sum(NISP_proportion$NISP.Proportion, na.rm = TRUE))
+```
+
+
+
