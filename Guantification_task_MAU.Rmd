@@ -493,3 +493,42 @@ MNI_proportion[4,3] = as.numeric((MNI_proportion[4,2]/MNI_proportion[5,2])*100)
 MNI_proportion[5,3] = as.numeric(sum(MNI_proportion$MNI.Proportion, na.rm = TRUE))
 ```
 
+```{r meat weight}
+options(digits = 2)
+
+Meat_weight <- data.frame("Taxon" = character(),
+                              "MNI" = integer(),
+                              "Meat Weight kg" = integer(),
+                              "Meat Weight Proportion" = integer(),
+                              stringsAsFactors = FALSE)
+
+#set taxa
+
+Meat_weight <- Meat_weight %>%
+  add_row(Taxon = "Horse") %>%
+  add_row(Taxon = "Aurochs") %>%
+  add_row(Taxon = "Red Deer") %>%
+  add_row(Taxon = "Rabbit") %>%
+  add_row(Taxon = "Totals")
+  Meat_weight$MNI = MNI_proportion$MNI
+  
+#calculate meat weights
+Meat_weight[1,3] = as.numeric(Meat_weight[1,2]*150) #horse
+Meat_weight[2,3] = as.numeric(Meat_weight[2,2]*600) #auroch
+Meat_weight[3,3] = as.numeric(Meat_weight[3,2]*75) #red deer
+Meat_weight[4,3] = as.numeric(Meat_weight[4,2]*1) #rabbit
+Meat_weight[5,3] = as.numeric(sum(Meat_weight$Meat.Weight.kg, na.rm = TRUE))
+
+#Meat weight proportion
+Meat_weight[1,4] = as.numeric((Meat_weight[1,2]/Meat_weight[5,2])*100)
+Meat_weight[2,4] = as.numeric((Meat_weight[2,2]/Meat_weight[5,2])*100)
+Meat_weight[3,4] = as.numeric((Meat_weight[3,2]/Meat_weight[5,2])*100)
+Meat_weight[4,4] = as.numeric((Meat_weight[4,2]/Meat_weight[5,2])*100)
+Meat_weight[5,4] = as.numeric(sum(Meat_weight$Meat.Weight.Proportion, na.rm = TRUE))
+
+#everyone step to the left
+Meat_weight <- Meat_weight %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "Taxon")
+```
+
