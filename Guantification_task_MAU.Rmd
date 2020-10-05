@@ -102,10 +102,10 @@ phalange1MAU <- as.numeric(horse_MNE[21, 3])/4
 phalange2MAU <- as.numeric(horse_MNE[22, 3])/4
 phalange3MAU <- as.numeric(horse_MNE[23, 3])/4
 
-MAU_column <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
+MAU_column_h <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
 
 horse_MAU <- horse_MNE %>%
-  add_column(.after = "total", MAU = MAU_column)
+  add_column(.after = "total", MAU = MAU_column_h)
 
 horse_MAU <- horse_MAU %>%
   add_row(.after = "Total NISP", l = NA, r = NA, total = NA, MAU = sum(horse_MAU$MAU, na.rm = TRUE))
@@ -142,10 +142,10 @@ phalange1MAU <- as.numeric(auroch_MNE[21, 3])/8
 phalange2MAU <- as.numeric(auroch_MNE[22, 3])/8
 phalange3MAU <- as.numeric(auroch_MNE[23, 3])/8
 
-MAU_column <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
+MAU_column_a <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
 
 auroch_MAU <- auroch_MNE %>%
-  add_column(.after = "total", MAU = MAU_column)
+  add_column(.after = "total", MAU = MAU_column_a)
 
 auroch_MAU <- auroch_MAU%>%
   add_row(.after = "Total NISP", l = NA, r = NA, total = NA, MAU = sum(auroch_MAU$MAU, na.rm = TRUE))
@@ -181,10 +181,10 @@ phalange1MAU <- as.numeric(red_deer_MNE[21, 3])/8
 phalange2MAU <- as.numeric(red_deer_MNE[22, 3])/8
 phalange3MAU <- as.numeric(red_deer_MNE[23, 3])/8
 
-MAU_column <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
+MAU_column_rd <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
 
 red_deer_MAU <- red_deer_MNE %>%
-  add_column(.after = "total", MAU = MAU_column)
+  add_column(.after = "total", MAU = MAU_column_rd)
 
 red_deer_MAU <- red_deer_MAU%>%
   add_row(.after = "Total NISP", l = NA, r = NA, total = NA, MAU = sum(red_deer_MAU$MAU, na.rm = TRUE))
@@ -220,13 +220,44 @@ phalange1MAU <- as.numeric(rabbit_MNE[21, 3])/16
 phalange2MAU <- as.numeric(rabbit_MNE[22, 3])/16
 phalange3MAU <- as.numeric(rabbit_MNE[23, 3])/16
 
-MAU_column <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
+MAU_column_r <- c(mandibleMAU, maxillaMAU, atlasMAU, axisMAU, scapulaMAU, p_humerusMAU, d_humerusMAU, p_radiusMAU, d_radiusMAU, p_metacarpalMAU, d_metacarpalMAU, pelvisMAU, p_femurMAU, d_femurMAU, p_tibiaMAU, d_tibiaMAU, astragalusMAU, calcaneumMAU, p_metatarsalMAU, d_metatarsalMAU, phalange1MAU, phalange2MAU, phalange3MAU, NA)
 
 rabbit_MAU <- rabbit_MNE %>%
-  add_column(.after = "total", MAU = MAU_column)
+  add_column(.after = "total", MAU = MAU_column_r)
 
 rabbit_MAU <- rabbit_MAU%>%
   add_row(.after = "Total NISP", l = NA, r = NA, total = NA, MAU = sum(rabbit_MAU$MAU, na.rm = TRUE))
   row.names(rabbit_MAU)[25] <- "Total MAU"
 
 ```
+
+```{r MNI calculations W.I.P, horse}
+
+mandibleMNI <- as.numeric(max(horse_MNE[1,1], horse_MNE[1,2]))
+maxillaMNI <- as.numeric(max(horse_MNE[2,1], horse_MNE[2,2]))
+atlasMNI <- as.numeric(max(horse_MNE[3,1], horse_MNE[3,2]))
+axisMNI <- as.numeric(max(horse_MNE[4,1], horse_MNE[4,2]))
+scapulaMNI <- as.numeric(max(horse_MNE[5,1], horse_MNE[5,2]))
+p_humerusMNI <- as.numeric(max(horse_MNE[6,1], horse_MNE[6,2]))
+d_humerusMNI <- as.numeric(max(horse_MNE[7,1], horse_MNE[7,2]))
+p_radiusMNI <- as.numeric(max(horse_MNE[8,1], horse_MNE[8,2]))
+d_radiusMNI <- as.numeric(max(horse_MNE[9,1], horse_MNE[9,2]))
+p_metacarpalMNI <- as.numeric(max(horse_MNE[10,1], horse_MNE[10,2]))
+d_metacarpalMNI <- as.numeric(max(horse_MNE[11,1], horse_MNE[11,2]))
+pelvisMNI <- as.numeric(max(horse_MNE[12,1], horse_MNE[12,2]))
+p_femurMNI <- as.numeric(max(horse_MNE[13,1], horse_MNE[13,2]))
+d_femurMNI <- as.numeric(max(horse_MNE[14,1], horse_MNE[14,2]))
+p_tibiaMNI <- as.numeric(max(horse_MNE[15,1], horse_MNE[15,2]))
+d_tibiaMNI <- as.numeric(max(horse_MNE[16,1], horse_MNE[16,2]))
+astragalusMNI <- as.numeric(max(horse_MNE[17,1], horse_MNE[17,2]))
+calcaneumMNI <- as.numeric(max(horse_MNE[18,1], horse_MNE[18,2]))
+p_metatarsalMNI <- as.numeric(max(horse_MNE[19,1], horse_MNE[19,2]))
+d_metatarsalMNI <- as.numeric(max(horse_MNE[20,1], horse_MNE[20,2]))
+phalange1MNI <- as.numeric(max(horse_MNE[21,1], horse_MNE[21,2]))/4
+phalange2MNI <- as.numeric(max(horse_MNE[22,1], horse_MNE[22,2]))/4
+phalange3MNI <- as.numeric(max(horse_MNE[23,1], horse_MNE[23,2]))/4
+
+MNI_column_h <- c(mandibleMNI, maxillaMNI, atlasMNI, axisMNI, scapulaMNI, p_humerusMNI, d_humerusMNI, p_radiusMNI, d_radiusMNI, p_metacarpalMNI, d_metacarpalMNI, pelvisMNI, p_femurMNI, d_femurMNI, p_tibiaMNI, d_tibiaMNI, astragalusMNI, calcaneumMNI, p_metatarsalMNI, d_metatarsalMNI, phalange1MNI, phalange2MNI, phalange3MNI, NA, NA)
+
+horse_MNI <- horse_MAU %>%
+  add_column(.after = "MAU", MNI = MNI_column_h)
