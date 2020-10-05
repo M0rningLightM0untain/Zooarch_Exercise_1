@@ -424,5 +424,72 @@ NISP_proportion[4,3] = as.numeric((NISP_proportion[4,2]/NISP_proportion[5,2])*10
 NISP_proportion[5,3] = as.numeric(sum(NISP_proportion$NISP.Proportion, na.rm = TRUE))
 ```
 
+```{r MAU Proportions}
 
+options(digits = 2)
+
+MAU_proportion <- data.frame("Taxon" = character(),
+                              "MAU" = integer(),
+                              "MAU Proportion" = integer(),
+                              stringsAsFactors = FALSE)
+#set taxa
+
+MAU_proportion <- MAU_proportion %>%
+  add_row(Taxon = "Horse") %>%
+  add_row(Taxon = "Aurochs") %>%
+  add_row(Taxon = "Red Deer") %>%
+  add_row(Taxon = "Rabbit") %>%
+  add_row(Taxon = "Total MAU")
+
+#import base MAU
+
+MAU_proportion[1,2] = as.numeric(horse_MAU[25,4])
+MAU_proportion[2,2] = as.numeric(auroch_MAU[25,4])
+MAU_proportion[3,2] = as.numeric(red_deer_MAU[25,4])
+MAU_proportion[4,2] = as.numeric(rabbit_MAU[25,4])
+MAU_proportion[5,2] = as.numeric(sum(MAU_proportion$MAU, na.rm = TRUE))
+
+#calculate MAU proportions
+
+MAU_proportion[1,3] = as.numeric((MAU_proportion[1,2]/MAU_proportion[5,2])*100)
+MAU_proportion[2,3] = as.numeric((MAU_proportion[2,2]/MAU_proportion[5,2])*100)
+MAU_proportion[3,3] = as.numeric((MAU_proportion[3,2]/MAU_proportion[5,2])*100)
+MAU_proportion[4,3] = as.numeric((MAU_proportion[4,2]/MAU_proportion[5,2])*100)
+MAU_proportion[5,3] = as.numeric(sum(MAU_proportion$MAU.Proportion, na.rm = TRUE))
+```
+
+```{r MNI Proportion}
+
+
+options(digits = 2)
+
+MNI_proportion <- data.frame("Taxon" = character(),
+                              "MNI" = integer(),
+                              "MNI Proportion" = integer(),
+                              stringsAsFactors = FALSE)
+#set taxa
+
+MNI_proportion <- MNI_proportion %>%
+  add_row(Taxon = "Horse") %>%
+  add_row(Taxon = "Aurochs") %>%
+  add_row(Taxon = "Red Deer") %>%
+  add_row(Taxon = "Rabbit") %>%
+  add_row(Taxon = "Total MNI")
+
+#import base MNI
+
+MNI_proportion[1,2] = as.numeric(horse_MNI[26,5])
+MNI_proportion[2,2] = as.numeric(auroch_MNI[26,5])
+MNI_proportion[3,2] = as.numeric(red_deer_MNI[26,5])
+MNI_proportion[4,2] = as.numeric(rabbit_MNI[26,5])
+MNI_proportion[5,2] = as.numeric(sum(MNI_proportion$MNI, na.rm = TRUE))
+
+#calculate MNI proportions
+
+MNI_proportion[1,3] = as.numeric((MNI_proportion[1,2]/MNI_proportion[5,2])*100)
+MNI_proportion[2,3] = as.numeric((MNI_proportion[2,2]/MNI_proportion[5,2])*100)
+MNI_proportion[3,3] = as.numeric((MNI_proportion[3,2]/MNI_proportion[5,2])*100)
+MNI_proportion[4,3] = as.numeric((MNI_proportion[4,2]/MNI_proportion[5,2])*100)
+MNI_proportion[5,3] = as.numeric(sum(MNI_proportion$MNI.Proportion, na.rm = TRUE))
+```
 
