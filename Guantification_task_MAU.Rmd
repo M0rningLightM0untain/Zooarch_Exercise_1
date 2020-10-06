@@ -532,3 +532,66 @@ Meat_weight <- Meat_weight %>%
   column_to_rownames(var = "Taxon")
 ```
 
+```{r proportions table}
+
+all_prop <- data.frame("Taxon" = character(),
+                       "NISP" = integer(),
+                      "NISP Proportion" = integer(),
+                      "MAU" = integer(),
+                      "MAU Proportion" = integer(),
+                      "MNI" = integer(),
+                      "MNI Proportion" = integer(),
+                      "Meat Weight kg" = integer(),
+                      "Meat Weight Proportion" = integer(),
+                      stringsAsFactors = FALSE)
+
+all_prop <- all_prop %>%
+  add_row(Taxon = "Horse") %>%
+  add_row(Taxon = "Aurochs") %>%
+  add_row(Taxon = "Red Deer") %>%
+  add_row(Taxon = "Rabbit") %>%
+  add_row(Taxon = "Totals")
+  all_prop$NISP = NISP_proportion$NISP
+  all_prop$NISP.Proportion = NISP_proportion$NISP.Proportion
+  all_prop$MAU = MAU_proportion$MAU 
+  all_prop$MAU.Proportion = MAU_proportion$MAU.Proportion
+  all_prop$MNI = MNI_proportion$MNI 
+  all_prop$MNI.Proportion = MNI_proportion$MNI.Proportion
+  all_prop$Meat.Weight.kg = Meat_weight$Meat.Weight.kg
+  all_prop$Meat.Weight.Proportion = Meat_weight$Meat.Weight.Proportion
+```                      
+
+
+```{r pretty graphs}
+
+all_prop_graphing <- all_prop[-c(5), ]
+  
+all_prop_graphing <- melt(all_prop_graphing, id.vars = "Taxon", variable.name = "Unit", value.name = "Value")
+all_prop_graphing <- all_prop_graphing[complete.cases(all_prop_graphing), ]
+
+ggplot(all_prop_graphing, aes(x = Taxon, y = Value, fill = Unit)) +
+  geom_col() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.text.x = element_text(angle = 90, vjust = 0.6),
+    axis.line = element_line(color = 'black'),
+  ) +
+  labs(
+    x = "Taxon",
+    y = "Value",
+    title = "Quantitative exercise"
+  ) +
+  guides(fill = "none") +
+  #scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10, 12), minor_breaks = NULL) +
+  facet_wrap(~Unit, scales = "free_y")
+
+ggsave("Quantitative_Exercise_result.png", dpi = 900)
+
+```
+
+```{r Pretty tables}
+
+```
+
