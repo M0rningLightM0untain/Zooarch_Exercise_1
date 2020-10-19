@@ -21,6 +21,7 @@ library(janitor)
 library(ggplot2)
 library(reshape2)#install.packages("reshape2")
 library(RColorBrewer) #install.packages("RColorBrewer")
+library(qpcR) #install.packages("qpcR")
 ```
 
 ```{r data import}
@@ -125,6 +126,33 @@ geom_histogram( color = "black", fill = "#d47332", bins = 29) +
   labs(
     x = "SLC mm",
     title = "Ringkloster unfused"
+  )
+```
+
+```{r mixed graphs}
+
+svae_both <- qpcR:::cbind.na(svae_f, svae_u)
+ 
+ggplot(svae_both, aes(x = svaerborg_1_fused, color = "black", fill = "#03f62c")) +
+  geom_histogram()
+geom_histogram(svae_both, aes(x = svaerborg_1_unfused, color = "black", fill = "#d47332"), bins = 29) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.line = element_line(color = 'black'),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_line(color = 'black'),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.title.y = element_blank()
+    ) +
+  coord_cartesian(xlim = c(8.5, 37), ylim = c(0, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(9, 37, by = 1)) +
+  scale_y_continuous(breaks = seq(0,20, by = 5)) +
+  labs(
+    x = "SLC mm",
+    title = "Svaerborg 1 Fused"
   )
 ```
 
