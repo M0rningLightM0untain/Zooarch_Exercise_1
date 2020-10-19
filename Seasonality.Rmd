@@ -1,0 +1,130 @@
+---
+title: "Seasonality"
+author: "Jack Sudds"
+date: "19/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load libaries, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) #install.packages("skimr")
+library(kableExtra) #install.packages("kableExtra")
+library(formattable)#install.packages("formattable")
+library(dplyr)
+library(janitor)
+library(ggplot2)
+library(reshape2)#install.packages("reshape2")
+library(RColorBrewer) #install.packages("RColorBrewer")
+```
+
+```{r data import}
+
+svae_f <- read_excel(here("data", "seasonality.xlsx"), sheet = "Data", range = "A1:A71")
+svae_u <- read_excel(here("data", "seasonality.xlsx"), sheet = "Data", range = "B1:B20")
+ring_f <- read_excel(here("data", "seasonality.xlsx"), sheet = "Data", range = "C1:C71")
+ring_u <- read_excel(here("data", "seasonality.xlsx"), sheet = "Data", range = "D1:D11")
+bins <- read_excel(here("data", "seasonality.xlsx"), sheet = "Data", range = "G1:G30")
+
+svae_f <- svae_f %>%
+  janitor::clean_names()
+svae_u <- svae_u %>%
+  janitor::clean_names()
+ring_f <- ring_f %>%
+  janitor::clean_names()
+ring_u <- ring_u %>%
+  janitor::clean_names()
+```
+
+```{r histogram trial}
+
+ggplot(svae_f, aes(x = svaerborg_1_fused)) +
+geom_histogram( color = "black", fill = "#03f62c", bins = 29) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.line = element_line(color = 'black'),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_line(color = 'black'),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.title.y = element_blank()
+    ) +
+  coord_cartesian(xlim = c(8.5, 37), ylim = c(0, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(9, 37, by = 1)) +
+  scale_y_continuous(breaks = seq(0,20, by = 5)) +
+  labs(
+    x = "SLC mm",
+    title = "Svaerborg 1 Fused"
+  )
+
+ggplot(svae_u, aes(x = svaerborg_1_unfused)) +
+geom_histogram( color = "black", fill = "#d47332", bins = 29) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.line = element_line(color = 'black'),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_line(color = 'black'),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.title.y = element_blank()
+    ) +
+  coord_cartesian(xlim = c(8.5, 37), ylim = c(0, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(9, 37, by = 1)) +
+  scale_y_continuous(breaks = seq(0,20, by = 5)) +
+  labs(
+    x = "SLC mm",
+    title = "Svaerborg 1 Unfused"
+  )
+
+ggplot(ring_f, aes(x = ringkloster_fused)) +
+geom_histogram( color = "black", fill = "#03f62c", bins = 29) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.line = element_line(color = 'black'),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_line(color = 'black'),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.title.y = element_blank()
+    ) +
+  coord_cartesian(xlim = c(8.5, 37), ylim = c(0, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(9, 37, by = 1)) +
+  scale_y_continuous(breaks = seq(0,20, by = 5)) +
+  labs(
+    x = "SLC mm",
+    title = "Ringkloster Fused"
+  )
+
+ggplot(ring_u, aes(x = ringkloster_unfused)) +
+geom_histogram( color = "black", fill = "#d47332", bins = 29) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = 'bold'),
+    panel.background = element_rect(fill = 'white'),
+    panel.grid = element_line(color = 'darkgrey'),
+    axis.line = element_line(color = 'black'),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_line(color = 'black'),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.title.y = element_blank()
+    ) +
+  coord_cartesian(xlim = c(8.5, 37), ylim = c(0, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(9, 37, by = 1)) +
+  scale_y_continuous(breaks = seq(0,20, by = 5)) +
+  labs(
+    x = "SLC mm",
+    title = "Ringkloster unfused"
+  )
+```
+
