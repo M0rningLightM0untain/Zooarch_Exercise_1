@@ -1,0 +1,60 @@
+---
+title: "Sheep vs Goat metrics"
+author: "Jack Sudds"
+date: "29/10/2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load libaries, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) #install.packages("skimr")
+library(kableExtra) #install.packages("kableExtra")
+library(formattable)#install.packages("formattable")
+library(dplyr)
+library(janitor)
+library(ggplot2)
+library(reshape2)#install.packages("reshape2")
+library(RColorBrewer) #install.packages("RColorBrewer")
+library(qpcR) #install.packages("qpcR")
+```
+
+```{r data import}
+sheep_goat_base <- read_excel(here("data", "sheepvgoat.xlsx"), sheet = "Graph", range = "A1:D43" )
+
+sheep_goat_base <- sheep_goat_base %>%
+  janitor::clean_names()
+
+colnames(sheep_goat_base)[1] = "measurement_b"
+```
+
+```{r graphing}
+
+sheep_vs_goat <- ggplot2::ggplot(sheep_goat_base, aes(x = measurement_b, y = medial), color = "#ff6666")
+
+ggplot()+
+  geom_point(sheep_goat_base, mapping = aes(x = measurement_b, y = medial), color = "#ff6666") +
+  geom_point(sheep_goat_base, mapping = aes(x = measurement_b, y = lateral), color = "#7496D2") +
+  stat_smooth(sheep_goat_base, mapping = aes(x = measurement_b, y = s_g_division), color = "#000000", method = 'lm', se = FALSE, fullrange = TRUE) +
+  theme(
+        plot.title = element_text(hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(hjust = 0.5),
+        panel.background = element_rect(fill = 'white'),
+        panel.grid = element_line(color = 'darkgrey'),
+        axis.line = element_line(color = 'black')
+  )+
+  labs(
+    x = "Measurement B",
+    y = "Measurement A",
+    title = "Sheep/Goat diff. via Metacarpal"
+  )
+
+
+```
+
