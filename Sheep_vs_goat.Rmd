@@ -55,6 +55,22 @@ ggplot()+
     title = "Sheep/Goat diff. via Metacarpal"
   )
 
+ggplot()+
+  geom_point(sheep_goat_base, mapping = aes(x = measurement_b, y = medial), color = "#ff6666") +
+  #geom_point(sheep_goat_base, mapping = aes(x = measurement_b, y = lateral), color = "#7496D2") +
+  stat_smooth(sheep_goat_base, mapping = aes(x = measurement_b, y = s_g_division), color = "#000000", method = 'lm', se = FALSE, fullrange = TRUE) +
+  theme(
+        plot.title = element_text(hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(hjust = 0.5),
+        panel.background = element_rect(fill = 'white'),
+        panel.grid = element_line(color = 'darkgrey'),
+        axis.line = element_line(color = 'black')
+  )+
+  labs(
+    x = "Measurement B",
+    y = "Measurement A",
+    title = "Sheep/Goat diff. via Metacarpal"
+  )
 
 ```
 
